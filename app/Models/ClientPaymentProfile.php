@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ClientPaymentProfile extends Model
 {
+
     use HasFactory;
 
-    public function clients()
+    public function client()
     {
-        return $this->belongsToMany('App\Models\Client');
+        return $this->belongsTo(Client::class);
     }
 }

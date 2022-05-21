@@ -14,7 +14,12 @@ class ClientFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'company' => $this->faker->name(),
+            'free_agent_id' => $this->faker->uuid(),
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'telephone' => $this->faker->phoneNumber()
         ];
     }
 }

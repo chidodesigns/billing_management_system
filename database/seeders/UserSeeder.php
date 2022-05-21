@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\ClientPaymentProfile;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
-class ClientPaymentProfileSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class ClientPaymentProfileSeeder extends Seeder
      */
     public function run()
     {
-        ClientPaymentProfile::factory()->times(10)->create();
+        User::factory()->times(10)->create();
     }
 }

@@ -21,6 +21,7 @@ class CreateClientPaymentProfilesTable extends Migration
             $table->string('invoiced');
             $table->string('direct_debit');
             $table->string('payment_terms');
+            $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
