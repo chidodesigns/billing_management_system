@@ -34,12 +34,14 @@
                         <a class="nav-link" href="#">Users</a>
                     </li>
                 </ul>
-                <form class="d-flex">
+                <div class="d-flex">
                     <div>
                         @if (Route::has('login'))
                             <div>
                                 @auth
                                     <a href="{{ url('/home') }}">Home</a>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    <form id="logout-form" action="{{ route('logout')}}" method="POST" style="display: none;">@csrf</form>
                                 @else
                                     <a href="{{ route('login') }}">Log in</a>
 
@@ -50,7 +52,7 @@
                             </div>
                         @endif
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </nav>
