@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 
 //  Admin Routes
-Route::prefix('admin')->name('admin.')->group(function (){
+Route::prefix('admin')->middleware('auth')->name('admin.')->group(function (){
     //  Billing System Users
     Route::resource('/users', UserController::class);
     //  Billing System Clients 
