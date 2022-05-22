@@ -1,5 +1,7 @@
 <?php
 
+use Admin\UserController;
+use Admin\ClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
+});
+
+
+//  Admin Routes
+Route::prefix('admin')->name('admin.')->group(function (){
+    //  Billing System Users
+    Route::resource('/users', UserController::class);
+    //  Billing System Clients 
+    Route::resource('/clients', ClientController::class);
 });
