@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">{{ config('app.name', 'User Management Billing System') }}</a>
+            <a class="navbar-brand" href="{{url('/')}}">{{ config('app.name', 'User Management Billing System') }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
                         @if (Route::has('login'))
                             <div>
                                 @auth
-                                    <a href="{{ url('/home') }}">Home</a>
+                                    <a href="{{ route('user.profile') }}">Profile</a>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                     <form id="logout-form" action="{{ route('logout')}}" method="POST" style="display: none;">@csrf</form>
                                 @else

@@ -2,6 +2,7 @@
 
 use Admin\UserController;
 use Admin\ClientController;
+use User\Profile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,11 @@ Route::get('/', function () {
     return view('index');
 });
 
+//  User Related Pages
+Route::prefix('user')->middleware(['auth'])->name('user.')->group(function () {
+    Route::get('profile', Profile::class)->name('profile');
+});
+
 
 //  Admin Routes
 Route::prefix('admin')->middleware(['auth', 'auth.isAdmin'])->name('admin.')->group(function (){
@@ -27,3 +33,4 @@ Route::prefix('admin')->middleware(['auth', 'auth.isAdmin'])->name('admin.')->gr
     //  Billing System Clients 
     Route::resource('/clients', ClientController::class);
 });
+
