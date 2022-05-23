@@ -11,7 +11,11 @@
         "laravel/fortify": "^1.13",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "symfony/http-client": "^5.4",
+        "symfony/postmark-mailer": "^5.4",
+        "wildbit/postmark-php": "^4.0",
+        "wildbit/swiftmailer-postmark": "^3.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
