@@ -16,12 +16,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      
-       return view('admin.users.index', [
-           'users' => User::paginate(10)
-       ]);
+      if(Gate::allows('is-admin')){
+        return view('admin.users.index', [
+            'users' => User::paginate(10)
+        ]);
+      }
+
+      $request->session()->flash('error', 'You do not have access to this page');
+      return redirect(('/'));
+   
     }
 
     /**
@@ -63,7 +68,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
