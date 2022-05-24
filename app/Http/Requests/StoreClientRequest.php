@@ -24,7 +24,11 @@ class StoreClientRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'company' => 'required|max:255',
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'required|max:255|unique:clients',
+            'telephone' => 'required|max:11',
         ];
     }
 }

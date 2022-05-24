@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreClientRequest;
+use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ClientController extends Controller
 {
@@ -12,9 +15,16 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        dd('index method on client controller');
+        if(Gate::allows('is-admin')){
+            return view('admin.clients.index', [
+                'clients' => Client::paginate(10)
+            ]);
+          }
+    
+          $request->session()->flash('error', 'You do not have access to this page');
+          return redirect(('/'));
     }
 
     /**
@@ -24,7 +34,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.clients.create');
     }
 
     /**
@@ -35,7 +45,20 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'company' => 'required|max:255',
+            'free_agent_id' => 'required',
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'required|max:255|unique:clients',
+            'telephone' => 'required|max:11',
+        ]);
+
+        $client = Client::create($validatedData);
+
+        $request->session()->flash('success', 'You have created a new client');
+
+        return redirect(route('admin.clients.index'));
     }
 
     /**
@@ -78,8 +101,12 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        Client::destroy($id);
+
+        $request->session()->flash('success', 'You have deleted the user');
+
+        return redirect(route('admin.clients.index'));
     }
 }
