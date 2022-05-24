@@ -17,7 +17,6 @@
                 <th scope="col">Firstname</th>
                 <th scope="col">Lastname</th>
                 <th scope="col">Email</th>
-                <th scope="col">Telephone</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -25,11 +24,10 @@
                 @foreach ($clients as $client)
                 <tr>
                     <td>{{$client->free_agent_id}}</td>
-                    <td>{{$client->company}}</td>
+                    <td><a href="{{ route('admin.clients.show', $client) }}">{{$client->company}}</a></td>
                     <td>{{$client->firstname}}</td>
                     <td>{{$client->lastname}}</td>
                     <td>{{$client->email}}</td>
-                    <td>{{$client->telephone}}</td>
                     <td>
                         <a class="btn btn-sm btn-primary" href="{{ route('admin.clients.edit', $client->id)}}" role="button">Edit</a>
                         <button type="button" class="btn btn-sm btn-danger"
