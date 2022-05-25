@@ -80,9 +80,11 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Client $client)
     {
-        //
+        return view('admin.clients.edit', [
+            'client' => $client
+        ]);
     }
 
     /**
