@@ -18,7 +18,7 @@ class ClientPaymentProfileFactory extends Factory
 
         return [
             'client_id' => $clients->random(1)->pluck('id')->first(),
-            'client_name' => $clients->random(1)->pluck('firstname', 'lastname'),
+            'client_name' => $clients->random(1)->pluck('company'),
             'recurrence_type' => 'monthly',
             'recurrence_date' => $this->faker->dateTime(),
             'invoiced' => 'Advanced',

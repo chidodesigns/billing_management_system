@@ -69,6 +69,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.clients.index')}}">Clients</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.client-payments.index')}}">Client Payment Profiles</a>
+                    </li>
                     @endcan
                 </ul>
             </div>

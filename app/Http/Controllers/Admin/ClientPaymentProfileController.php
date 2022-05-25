@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreClientPaymentProfileRequest;
-use App\Http\Requests\UpdateClientPaymentProfileRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\ClientPaymentProfile;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ClientPaymentProfileController extends Controller
 {
@@ -13,9 +15,16 @@ class ClientPaymentProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if(Gate::allows('is-admin')){
+            return view('admin.client-payments.index', [
+                'client_payment_profiles' => ClientPaymentProfile::paginate(10)
+            ]);
+          }
+    
+          $request->session()->flash('error', 'You do not have access to this page');
+          return redirect(('/'));
     }
 
     /**
@@ -25,16 +34,18 @@ class ClientPaymentProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.client-payments.create',[
+            'search_results' => Client::search('Garrick')->get()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreClientPaymentProfileRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreClientPaymentProfileRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +53,10 @@ class ClientPaymentProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ClientPaymentProfile  $clientPaymentProfile
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ClientPaymentProfile $clientPaymentProfile)
+    public function show($id)
     {
         //
     }
@@ -53,10 +64,10 @@ class ClientPaymentProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ClientPaymentProfile  $clientPaymentProfile
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClientPaymentProfile $clientPaymentProfile)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +75,11 @@ class ClientPaymentProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateClientPaymentProfileRequest  $request
-     * @param  \App\Models\ClientPaymentProfile  $clientPaymentProfile
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClientPaymentProfileRequest $request, ClientPaymentProfile $clientPaymentProfile)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +87,10 @@ class ClientPaymentProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ClientPaymentProfile  $clientPaymentProfile
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClientPaymentProfile $clientPaymentProfile)
+    public function destroy($id)
     {
         //
     }
