@@ -96,7 +96,21 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $client = Client::find($id);
+
+        if(!$client){
+            $request->session()->flash('error', 'You cannot edit this client');
+            return redirect(route('admin.clients.index'));
+        }
+
+        $client->update($request->except([
+            'token',
+            'roles'
+        ]));
+
+        $request->session()->flash('success', 'You have edited the client');
+
+        return redirect(route('admin.clients.index'));
     }
 
     /**

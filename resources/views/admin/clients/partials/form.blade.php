@@ -42,7 +42,7 @@
 <div class="mb-3">
     <label for="email" class="form-label">Client Email address</label>
     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="email"
-        name="email" value="{{ old('email') }}@isset($user) {{ $client->email }} @endisset">
+        name="email" value="{{ old('email') }}@isset($client) {{ $client->email }} @endisset">
     @error('email')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
