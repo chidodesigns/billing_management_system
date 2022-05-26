@@ -34,9 +34,7 @@ class ClientPaymentProfileController extends Controller
      */
     public function create()
     {
-        return view('admin.client-payments.create',[
-            'search_results' => Client::search('Garrick')->get()
-        ]);
+        return view('admin.client-payments.create');
     }
 
     /**

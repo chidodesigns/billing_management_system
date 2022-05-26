@@ -1,6 +1,7 @@
 @extends('templates.main')
 
 @section('content')
+    
     <div class="row">
         <div class="col-12 d-flex">
             <h1 class="me-auto align-self-center">Client Payment Profiles</h1>

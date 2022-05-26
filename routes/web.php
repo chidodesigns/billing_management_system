@@ -3,6 +3,7 @@
 use Admin\UserController;
 use Admin\ClientController;
 use Admin\ClientPaymentProfileController;
+use Admin\SearchController;
 use User\Profile;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +36,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.isAdmin'])->name('admin.')->gr
     Route::resource('/clients', ClientController::class);
     //  Billing System Client Payment Profiles
     Route::resource('/client-payments', ClientPaymentProfileController::class);
+    //  Billing System Search Route 
+    Route::post('/search', SearchController::class)->name('clients.search');
 });
 

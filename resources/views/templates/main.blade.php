@@ -72,8 +72,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.client-payments.index')}}">Client Payment Profiles</a>
                     </li>
-                    @endcan
                 </ul>
+                    <div class="d-flex">
+                        <x-search/>
+                    </div>
+               
+                    @endcan
             </div>
         </div>
     </nav>
