@@ -4,7 +4,7 @@
     
     <div class="row">
         <div class="col-12 d-flex">
-            <h1 class="me-auto align-self-center">Client Payment Profiles</h1>
+            <h1 class="me-auto align-self-center">Client Payment Records</h1>
         </div>
     </div>
 
