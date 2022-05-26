@@ -32,9 +32,13 @@ class ClientPaymentProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.client-payments.create');
+        $clientId = $request->query('id');
+
+        return view('admin.client-payments.create', [
+            'client' => Client::find($clientId)
+        ]);
     }
 
     /**
@@ -56,7 +60,11 @@ class ClientPaymentProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        $clientPaymentProfile = ClientPaymentProfile::find($id);
+
+        return view('admin.client-payments.show', [
+            'client_payment_profile' => $clientPaymentProfile
+        ]);
     }
 
     /**

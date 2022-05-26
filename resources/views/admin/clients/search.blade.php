@@ -26,7 +26,7 @@
                 <td>{{$client->lastname}}</td>
                 <td>{{$client->email}}</td>
                 <td>
-                  <a class="btn btn-sm btn-warning" href="{{ route('admin.clients.edit', $client->id)}}" role="button">Create Payment Record</a>
+                  <a class="btn btn-sm btn-warning" href="{{ route('admin.client-payments.create', ['id' => $client->id])}}" role="button">Create Payment Record</a>
                     <a class="btn btn-sm btn-primary" href="{{ route('admin.clients.edit', $client->id)}}" role="button">Edit</a>
                     <button type="button" class="btn btn-sm btn-danger"
                     onclick="event.preventDefault(); 

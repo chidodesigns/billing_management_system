@@ -1,6 +1,9 @@
 @extends('templates.main')
 
 @section('content')
+    <div class="my-3">
+        <a href="{{ url()->previous() }}" role="button" class="btn btn-primary">Back</a>
+    </div>
     <div class="card">
         <div class="card-header">
             <h1>Client: {{ $client->company }}</h1>
@@ -12,12 +15,12 @@
                 <li class="list-group-item"><strong>Telephone:</strong> {{ $client->telephone }}</li>
             </ul>
             <div class="card-footer">
-                <a class="btn btn-sm btn-warning" href=""
-                    role="button">Create Client Payment</a>
-                <a class="btn btn-sm btn-primary" href="{{ route('admin.clients.edit', $client->id) }}"
-                    role="button">Edit Client</a>
+                <a class="btn btn-sm btn-warning" href="{{ route('admin.client-payments.create', ['id' => $client->id]) }}"
+                    role="button">Create Payment Record</a>
+                <a class="btn btn-sm btn-primary" href="{{ route('admin.clients.edit', $client->id) }}" role="button">Edit
+                    Client</a>
                 <button type="button" class="btn btn-sm btn-danger" onclick="event.preventDefault();
-                    document.getElementById('delete-client-form-{{ $client->id }}').submit()">
+                        document.getElementById('delete-client-form-{{ $client->id }}').submit()">
                     Delete Client
                 </button>
                 <form id="delete-client-form-{{ $client->id }}"
