@@ -14,9 +14,8 @@
               <tr>
                 <th scope="col">Free Agent #Id</th>
                 <th scope="col">Company</th>
-                <th scope="col">Firstname</th>
-                <th scope="col">Lastname</th>
                 <th scope="col">Email</th>
+                <th scope="col">Client Payment Records</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -25,9 +24,8 @@
                 <tr>
                     <td>{{$client->free_agent_id}}</td>
                     <td><a href="{{ route('admin.clients.show', $client) }}">{{$client->company}}</a></td>
-                    <td>{{$client->firstname}}</td>
-                    <td>{{$client->lastname}}</td>
                     <td>{{$client->email}}</td>
+                    <td class="text-center">{{$client->clientPaymentProfile->count()}}</td>
                     <td>
                         <div class="d-flex flex-column">
                             <a class="btn btn-sm btn-success" href="{{ route('admin.clients.show', $client) }}" role="button">View Client</a>
@@ -45,6 +43,7 @@
                         </div>
                     </td>
                   </tr>
+                  
                 @endforeach
            
             </tbody>

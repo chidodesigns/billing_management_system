@@ -17,6 +17,7 @@ class ClientPaymentProfileController extends Controller
      */
     public function index(Request $request)
     {
+
         if(Gate::allows('is-admin')){
             return view('admin.client-payments.index', [
                 'client_payment_profiles' => ClientPaymentProfile::paginate(10)

@@ -23,6 +23,7 @@ class Client extends Model
         return $this->hasMany(ClientPaymentProfile::class);
     }
 
+
     public function toSearchableArray()
     {
         return [
