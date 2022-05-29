@@ -72,6 +72,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.client-payments.index')}}">Client Payment Records</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.services.index')}}">Services</a>
+                    </li>
                 </ul>
                     <div class="d-flex">
                         <x-search/>

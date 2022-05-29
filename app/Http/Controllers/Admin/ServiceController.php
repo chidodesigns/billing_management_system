@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ServiceController extends Controller
 {
@@ -12,9 +14,16 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if(Gate::allows('is-admin')){
+            return view('admin.services.index ', [
+                'services' => Service::paginate(10)
+            ]);
+          }
+    
+          $request->session()->flash('error', 'You do not have access to this page');
+          return redirect(('/'));
     }
 
     /**
