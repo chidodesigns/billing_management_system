@@ -38,7 +38,7 @@
 <div class="mb-3">
     <label for="recurrence_date" class="form-label">Recurrence Date:</label>
     <input type="date" id="recurrence_date" name="recurrence_date"
-        class="form-control @error('recurrence_date') is-invalid @enderror" value="{{$client_payment_profile->recurrence_date}}">
+        class="form-control @error('recurrence_date') is-invalid @enderror" @isset($client_payment_profile) value="{{$client_payment_profile->recurrence_date}}" @endisset>
 </div>
 <div class="mb-3">
     <label for="direct_debit" class="form-label">Collect Payment By Direct Debit</label>
