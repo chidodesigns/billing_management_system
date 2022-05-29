@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ServiceFactory extends Factory
+class ServicePaymentRecordFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +14,7 @@ class ServiceFactory extends Factory
     public function definition()
     {
         return [
-            'service_type_name' => $this->faker->jobTitle()
+            //
         ];
     }
 }
