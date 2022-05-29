@@ -16,10 +16,10 @@ class CreateServicePaymentRecordsTable extends Migration
         Schema::create('service_payment_records', function (Blueprint $table) {
             $table->id();
             $table->string('domain');
-            $table->string('registration_date');
-            $table->string('renewal_date')->nullable();
+            $table->date('registration_date');
+            $table->date('renewal_date')->nullable();
             $table->string('amount');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

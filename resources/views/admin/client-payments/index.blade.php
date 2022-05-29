@@ -30,7 +30,9 @@
                     <td>{{$clientPaymentProfile->invoiced}}</td>
                     <td class="text-center">{{$clientPaymentProfile->direct_debit}}</td>
                     <td class="text-center">{{$clientPaymentProfile->payment_terms}}</td>
-                    <td>
+                    <td class="d-flex flex-column">
+                        <a class="btn btn-sm btn-warning" href="{{ route('admin.service-payments.create', ['id' => $clientPaymentProfile->id]) }}" role="button">Add Service Payment Record
+                        </a>
                         <a class="btn btn-sm btn-success" href="{{ route('admin.client-payments.show', $clientPaymentProfile)}}" role="button">View</a>
                         <a class="btn btn-sm btn-primary" href="{{ route('admin.client-payments.edit', $clientPaymentProfile->id)}}" role="button">Edit</a>
                         <button type="button" class="btn btn-sm btn-danger"

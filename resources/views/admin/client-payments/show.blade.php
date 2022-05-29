@@ -26,6 +26,8 @@
             </ul>
         </div>
         <div class="card-footer">
+            <a class="btn btn-sm btn-warning" href="{{ route('admin.service-payments.create', ['id' => $client_payment_profile->id]) }}" role="button">Add Service Payment Record
+            </a>
             <a class="btn btn-sm btn-primary" href="{{ route('admin.client-payments.edit', $client_payment_profile->id) }}" role="button">Edit Client Payment Record
             </a>
             <button type="button" class="btn btn-sm btn-danger" onclick="event.preventDefault();

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClientPaymentProfile;
+use App\Models\Service;
+use App\Models\ServicePaymentRecord as ModelsServicePaymentRecord;
 use Illuminate\Http\Request;
 
 class ServicePaymentRecord extends Controller
@@ -22,9 +25,14 @@ class ServicePaymentRecord extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $clientPaymentProfile = $request->query('id');
+
+        return view('admin.service-payments.create', [
+            'client_payment_profile' => ClientPaymentProfile::find($clientPaymentProfile),
+            'services' => Service::all()
+        ]);
     }
 
     /**
@@ -35,7 +43,35 @@ class ServicePaymentRecord extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+       //   Grab ClientPaymentRecordId
+       $clientPaymentProfileId = $request->service_payment_record_id;
+
+        //after creating the service payment record -> send the new service record id to the ClientPaymentProfile Model
+        $validatedData = $request->validate([
+            'domain' => 'required',
+            'registration_date' => 'required',
+            'renewal_date' => 'required',
+            'amount' => 'required',
+            'notes' => 'required',
+            'service_id' => 'required'
+        ]);
+
+        $servicePaymentRecord = ModelsServicePaymentRecord::create($validatedData);
+        $servicePaymentRecordId = $servicePaymentRecord->id;
+
+        if($servicePaymentRecord){
+             //  Move This Code To A Seperate Service 
+            $clientPaymentProfileRecord = ClientPaymentProfile::find($clientPaymentProfileId);
+            if($clientPaymentProfileRecord){
+                $clientPaymentProfileRecord->service_payment_record_id = $servicePaymentRecordId;
+                $clientPaymentProfileRecord->save();
+            }
+        }
+
+        $request->session()->flash('success', 'You have created a new Service Payment Record');
+
+        return redirect(route('admin.client-payments.index'));
     }
 
     /**
