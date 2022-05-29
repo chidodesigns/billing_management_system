@@ -44,7 +44,15 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'service_type_name' => 'required'
+        ]);
+
+        $service =  Service::create($validatedData);
+
+        $request->session()->flash('success', 'You have created a new client');
+
+        return redirect(route('admin.services.index'));
     }
 
     /**
