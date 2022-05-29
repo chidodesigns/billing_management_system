@@ -11,6 +11,13 @@ class ClientPaymentProfile extends Model
 
     use HasFactory;
 
+         /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $guarded = [];
+
     public function client()
     {
         return $this->belongsTo(Client::class);

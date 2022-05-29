@@ -14,7 +14,7 @@
               <tr>
                 <th scope="col">Client Name</th>
                 <th scope="col">Recurrence Type</th>
-                <th scope="col">Recurrance Date</th>
+                <th scope="col">Recurrance Date (YYYY/MM/DD)</th>
                 <th scope="col">Invoiced</th>
                 <th scope="col">Direct Debit</th>
                 <th scope="col">Payment Terms (Days)</th>

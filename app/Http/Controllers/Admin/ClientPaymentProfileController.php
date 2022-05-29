@@ -49,7 +49,23 @@ class ClientPaymentProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->only([
+            'client_name',
+            'recurrence_type',
+            'recurrence_date',
+            'invoiced',
+            'direct_debit',
+            'payment_terms',
+            'client_id',
+
+        ]);
+
+        $clientPaymentProfile = ClientPaymentProfile::create($validatedData);
+
+        $request->session()->flash('success', 'You have created a new Client Payment Record');
+
+        return redirect(route('admin.client-payments.index'));
     }
 
     /**
@@ -61,6 +77,7 @@ class ClientPaymentProfileController extends Controller
     public function show($id)
     {
         $clientPaymentProfile = ClientPaymentProfile::find($id);
+
 
         return view('admin.client-payments.show', [
             'client_payment_profile' => $clientPaymentProfile
@@ -75,7 +92,13 @@ class ClientPaymentProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $clientPaymentProfile = ClientPaymentProfile::find($id);
+        $client = Client::find($clientPaymentProfile->client_id);
+        
+        return view('admin.client-payments.edit', [
+            'client' => $client,
+            'client_payment_profile' => $clientPaymentProfile
+        ]);
     }
 
     /**
@@ -87,7 +110,26 @@ class ClientPaymentProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $clientPaymentProfile = ClientPaymentProfile::find($id);
+
+        if(!$clientPaymentProfile){
+            $request->session()->flash('error', 'You cannot edit this client payment record');
+            return redirect(route('admin.client-payments.index'));
+        }
+
+
+        $clientPaymentProfile->update($validatedData = $request->only([
+            'recurrence_type',
+            'recurrence_date',
+            'invoiced',
+            'direct_debit',
+            'payment_terms',
+
+        ]));
+
+        $request->session()->flash('success', 'You have edited the client payment record');
+
+        return redirect(route('admin.client-payments.index'));
     }
 
     /**
@@ -96,8 +138,12 @@ class ClientPaymentProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        ClientPaymentProfile::destroy($id);
+
+        $request->session()->flash('success', 'You have deleted the client payment profile');
+
+        return redirect(route('admin.client-payments.index'));
     }
 }
