@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\service;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -41,10 +41,10 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\service  $service
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(service $service)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\service  $service
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(service $service)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +64,10 @@ class ServiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\service  $service
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, service $service)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\service  $service
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(service $service)
+    public function destroy($id)
     {
         //
     }
