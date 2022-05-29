@@ -23,6 +23,7 @@
                 <th scope="row">{{ $service->id }}</th>
                 <td>{{$service->service_type_name}}</td>
                 <td>
+                    <a class="btn btn-sm btn-primary" href="{{ route('admin.services.show', $service->id)}}" role="button">View</a>
                     <a class="btn btn-sm btn-primary" href="{{ route('admin.services.edit', $service->id)}}" role="button">Edit</a>
                     <button type="button" class="btn btn-sm btn-danger"
                     onclick="event.preventDefault(); 

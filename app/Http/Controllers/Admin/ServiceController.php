@@ -61,9 +61,11 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Service $service)
     {
-        //
+        return view('admin.services.show', [
+            'service' => $service
+        ]);
     }
 
     /**
@@ -72,9 +74,11 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Service $service)
     {
-        //
+        return view('admin.services.edit', [
+            'service' => $service
+        ]);
     }
 
     /**
@@ -86,7 +90,20 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $service = Service::find($id);
+
+        if(!$service){
+            $request->session()->flash('error', 'You cannot edit this service');
+            return redirect('/');
+        }
+
+        $service->update($request->only([
+            'service_type_name'
+        ]));
+
+        $request->session()->flash('success', 'You have edited the service');
+
+        return redirect(route('admin.services.index'));
     }
 
     /**
@@ -95,8 +112,12 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        Service::destroy($id);
+
+        $request->session()->flash('success', 'You have deleted the service');
+
+        return redirect(route('admin.services.index'));
     }
 }
