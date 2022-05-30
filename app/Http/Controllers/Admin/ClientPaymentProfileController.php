@@ -79,7 +79,6 @@ class ClientPaymentProfileController extends Controller
     {
         $clientPaymentProfile = ClientPaymentProfile::find($id);
 
-
         return view('admin.client-payments.show', [
             'client_payment_profile' => $clientPaymentProfile
         ]);

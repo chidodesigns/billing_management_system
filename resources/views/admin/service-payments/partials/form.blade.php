@@ -1,6 +1,6 @@
 @csrf
 <div class="mb-3">
-    <input type="hidden" class="form-control" id="service_payment_record_id" name="service_payment_record_id" value="{{$client_payment_profile->id}}">
+    <input type="hidden" class="form-control" id="client_payment_profile_id" name="client_payment_profile_id" value="{{$client_payment_profile->id}}">
 </div>
 <div class="mb-3">
     <label for="service_id" class="form-label">Service Type</label>
