@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ClientPaymentProfile;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ServicePaymentRecord extends Model
 {
@@ -15,4 +16,9 @@ class ServicePaymentRecord extends Model
      * @var array<int, string>
      */
     protected $guarded = [];
+
+    public function addServicePaymentRecordToClientPaymentProfile()
+    {
+        return $this->belongsTo(ClientPaymentProfile::class);
+    }
 }

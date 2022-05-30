@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Client;
+use App\Models\ServicePaymentRecord;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -18,10 +18,11 @@ class ClientPaymentProfile extends Model
      */
     protected $guarded = [];
 
-    public function client()
+    public function clientPaymentProfileToServicePaymentRecord()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsToMany(ServicePaymentRecord::class);
     }
+
 
  
 }
