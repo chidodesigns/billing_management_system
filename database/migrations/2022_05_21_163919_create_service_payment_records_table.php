@@ -20,6 +20,7 @@ class CreateServicePaymentRecordsTable extends Migration
             $table->date('renewal_date')->nullable();
             $table->string('amount');
             $table->string('notes')->nullable();
+            $table->string('service_type_name')->nullable();
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->foreignId('client_payment_profile_id')->constrained()->onDelete('cascade');
             $table->timestamps();

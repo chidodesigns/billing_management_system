@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\ClientPaymentProfile;
+use App\Models\Service;
+use App\Models\ServicePaymentRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -79,8 +81,12 @@ class ClientPaymentProfileController extends Controller
     {
         $clientPaymentProfile = ClientPaymentProfile::find($id);
 
+        //  Find Service Payment Records On Client Payment Profile 
+        $clientServicePaymentRecords = ServicePaymentRecord::where('client_payment_profile_id', $id)->get();
+
         return view('admin.client-payments.show', [
-            'client_payment_profile' => $clientPaymentProfile
+            'client_payment_profile' => $clientPaymentProfile,
+            'service_payment_records' => $clientServicePaymentRecords
         ]);
     }
 

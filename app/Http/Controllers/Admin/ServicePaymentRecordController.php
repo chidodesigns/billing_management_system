@@ -8,7 +8,7 @@ use App\Models\Service;
 use App\Models\ServicePaymentRecord as ModelsServicePaymentRecord;
 use Illuminate\Http\Request;
 
-class ServicePaymentRecord extends Controller
+class ServicePaymentRecordController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,7 +44,6 @@ class ServicePaymentRecord extends Controller
     public function store(Request $request)
     {
 
-        //after creating the service payment record -> send the new service record id to the ClientPaymentProfile Model
         $validatedData = $request->validate([
             'domain' => 'required',
             'registration_date' => 'required',
@@ -54,7 +53,15 @@ class ServicePaymentRecord extends Controller
             'client_payment_profile_id' => 'required'
         ]);
 
+        //  Find Service Model From ID and Retrieve The service_type_name
+        $service = Service::find($request->service_id);
+        $serviceTypeName = $service->service_type_name;
+
         $servicePaymentRecord = ModelsServicePaymentRecord::create($validatedData);
+
+        $servicePaymentRecord->service_type_name = $serviceTypeName;
+
+        $servicePaymentRecord->save();
 
         $request->session()->flash('success', 'You have created a new Service Payment Record');
 

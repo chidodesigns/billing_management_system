@@ -21,4 +21,5 @@ class ServicePaymentRecord extends Model
     {
         return $this->belongsTo(ClientPaymentProfile::class);
     }
+    
 }
