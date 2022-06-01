@@ -6,7 +6,7 @@
     </div>
     <div class="row mb-2">
         @php
-        $total = 0;
+            $total = 0;
         @endphp
         <div class="col-md-6">
             @foreach ($service_payment_records as $record)
@@ -35,7 +35,7 @@
                                 <strong>Amount:</strong>
                                 £ {{ $record->amount }}
                                 @php
-                                    $total+=$record->amount
+                                    $total += $record->amount;
                                 @endphp
                             </li>
                             @isset($record->notes)
@@ -46,10 +46,28 @@
                             @endisset
                         </ul>
                     </div>
+                    <div class="card-footer">
+                        <a class="btn btn-sm btn-primary"
+                            href="{{ route('admin.service-payments.edit', $record->id) }}"
+                            role="button">Edit
+                            Service Payment Record
+                        </a>
+                        <button type="button" class="btn btn-sm btn-danger"
+                            onclick="event.preventDefault();
+                                        document.getElementById('delete-service-payments-form-{{ $record->id }}').submit()">
+                            Delete Service Payment Record
+                        </button>
+                        <form id="delete-service-payments-form-{{ $record->id }}"
+                            action="{{ route('admin.service-payments.destroy', $record->id) }}"
+                            method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    </div>
                 </div>
             @endforeach
             <div class="card">
-                <h4><strong>Total Cost:</strong> £{{$total}}</h4>
+                <h4><strong>Total Cost:</strong> £{{ $total }}</h4>
             </div>
         </div>
         <div class="col-md-6">
@@ -88,7 +106,7 @@
                     </a>
                     <button type="button" class="btn btn-sm btn-danger"
                         onclick="event.preventDefault();
-                                    document.getElementById('delete-client-payments-form-{{ $client_payment_profile->id }}').submit()">
+                                        document.getElementById('delete-client-payments-form-{{ $client_payment_profile->id }}').submit()">
                         Delete Client Payment Record
                     </button>
                     <form id="delete-client-payments-form-{{ $client_payment_profile->id }}"

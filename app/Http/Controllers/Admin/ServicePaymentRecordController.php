@@ -87,7 +87,12 @@ class ServicePaymentRecordController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $servicePaymentRecord = ModelsServicePaymentRecord::find($id);
+
+        return view('admin.service-payments.edit', [
+            'service_payment_record' => $servicePaymentRecord
+        ]);
     }
 
     /**
@@ -99,7 +104,23 @@ class ServicePaymentRecordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $servicePaymentRecord = ModelsServicePaymentRecord::find($id);
+
+        if(!$servicePaymentRecord){
+            $request->session()->flash('error', 'You cannot edit this service payment record');
+            return redirect(route('/'));
+        }
+
+        $servicePaymentRecord->update($request->except([
+            'token',
+            'service_id',
+            'service_type_name',
+            'client_payment_profile_id'
+        ]));
+
+        $request->session()->flash('success', 'You have edited this service payment record');
+
+        return redirect(route('admin.client-payments.index'));
     }
 
     /**
@@ -108,8 +129,12 @@ class ServicePaymentRecordController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        ModelsServicePaymentRecord::destroy($id);
+
+        $request->session()->flash('success', 'You have deleted a service payment record');
+
+        return redirect(route('admin.client-payments.index'));
     }
 }

@@ -106,7 +106,6 @@ class ClientController extends Controller
 
         $client->update($request->except([
             'token',
-            'roles'
         ]));
 
         $request->session()->flash('success', 'You have edited the client');

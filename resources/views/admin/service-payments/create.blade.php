@@ -25,7 +25,7 @@
         <div class="card">
             <h4 class="text-center mb-4 text-decoration-underline">Create Service Payment Record</h4>
             <form method="POST" action="{{route('admin.service-payments.store')}}">
-                @include('admin.service-payments.partials.form')
+                @include('admin.service-payments.partials.form', ['edit' => false])
             </form>
         </div>
     </div>
