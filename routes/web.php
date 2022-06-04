@@ -6,6 +6,7 @@ use Admin\ClientPaymentProfileController;
 use Admin\SearchController;
 use Admin\ServiceController;
 use Admin\ServicePaymentRecordController;
+use SingleActionControllers\ExportController;
 use User\Profile;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,9 @@ Route::prefix('user')->middleware(['auth'])->name('user.')->group(function () {
     Route::get('profile', Profile::class)->name('profile');
 });
 
+  //  Export Clients 
+  Route::get('/clients/export/', ExportController::class);
+
 
 //  Admin Routes
 Route::prefix('admin')->middleware(['auth', 'auth.isAdmin'])->name('admin.')->group(function (){
@@ -44,5 +48,8 @@ Route::prefix('admin')->middleware(['auth', 'auth.isAdmin'])->name('admin.')->gr
     Route::resource('/service-payments', ServicePaymentRecordController::class);
     //  Billing System Search Route 
     Route::post('/search', SearchController::class)->name('clients.search');
+
 });
+
+
 

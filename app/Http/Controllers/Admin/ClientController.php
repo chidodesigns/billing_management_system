@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreClientRequest;
+use App\Exports\ClientsExport;
 use App\Models\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClientController extends Controller
 {
@@ -139,4 +140,5 @@ class ClientController extends Controller
 
         return redirect(route('admin.clients.index'));
     }
+
 }
