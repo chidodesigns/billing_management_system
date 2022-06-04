@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers\SingleActionControllers;
 
-use App\Exports\ClientsExport;
+use App\Exports\ClientPaymentRecordsExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-
-// use Maatwebsite\Excel\Excel;
-
-class ExportController extends Controller
+class ClientPaymentRecordsExportController extends Controller
 {
     public function __invoke(Request $request)
     {
-     
-        return new ClientsExport();
+        return new ClientPaymentRecordsExport();
     }
 }
