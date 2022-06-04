@@ -6,6 +6,7 @@ use Admin\ClientPaymentProfileController;
 use Admin\SearchController;
 use Admin\ServiceController;
 use Admin\ServicePaymentRecordController;
+use SingleActionControllers\ServicePaymentRecordsExportController;
 use SingleActionControllers\ClientPaymentRecordsExportController;
 use SingleActionControllers\ExportController;
 use User\Profile;
@@ -50,6 +51,8 @@ Route::prefix('admin')->middleware(['auth', 'auth.isAdmin'])->name('admin.')->gr
   Route::get('/clients-export', ExportController::class)->name('clients.export');
     //  Billing System Export Client Payment Records 
     Route::get('/client-payments-export', ClientPaymentRecordsExportController::class)->name('clientpayments.export');
+    //  Billing System Export Service Payments Records
+    Route::get('/service-payments-export', ServicePaymentRecordsExportController::class)->name('servicepayments.export');
   //    Route Views
   Route::view('/utilities', 'admin.utilities.index')->name('utilities.index');
 
