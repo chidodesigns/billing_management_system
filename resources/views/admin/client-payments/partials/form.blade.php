@@ -23,16 +23,16 @@
 </div>
 <div class="mb-3">
     <label for="recurrence_type" class="form-label">Recurrence Type</label>
-    <select class="form-select" aria-label="recurrence_type" name="recurrence_type" id="recurrence_type" value="{{ old('recurrence_type') }}@isset($client_payment_profile) {{ $client_payment_profile->recurrence_type }} @endisset">
-        <option value="monthly">Monthly</option>
-        <option value="annually">Annually</option>
+    <select class="form-select" aria-label="recurrence_type" name="recurrence_type" id="recurrence_type">
+        <option value="Monthly" {{old('recurrence_type', $client_payment_profile->recurrence_type) == 'Monthly' ? 'selected' : '' }} >Monthly</option>
+        <option value="Annually" {{old('recurrence_type', $client_payment_profile->recurrence_type) == 'Annually' ? 'selected' : '' }}>Annually</option>
     </select>
 </div>
 <div class="mb-3">
     <label for="invoiced" class="form-label">Invoiced</label>
     <select class="form-select" aria-label="invoiced" name="invoiced" id="invoiced">
-        <option value="advance">Advance</option>
-        <option value="arrears">Arrears</option>
+        <option value="Advance" {{old('invoiced', $client_payment_profile->invoiced) == 'Advance' ? 'selected' : '' }}>Advance</option>
+        <option value="Arrears" {{old('invoiced', $client_payment_profile->invoiced) == 'Arrears' ? 'selected' : '' }}>Arrears</option>
     </select>
 </div>
 <div class="mb-3">
@@ -43,8 +43,8 @@
 <div class="mb-3">
     <label for="direct_debit" class="form-label">Collect Payment By Direct Debit</label>
     <select class="form-select" aria-label="Direct Debit" name="direct_debit" id="direct_debit">
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
+        <option value="Yes" {{old('direct_debit', $client_payment_profile->direct_debit) == 'Yes' ? 'selected' : '' }}>Yes</option>
+        <option value="no" {{old('direct_debit', $client_payment_profile->direct_debit) == 'No' ? 'selected' : '' }}>No</option>
     </select>
 </div>
 <div class="mb-3">

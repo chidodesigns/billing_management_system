@@ -76,7 +76,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+        $user =  User::find($id);
+
+        return view('admin.users.show', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -118,7 +122,7 @@ class UserController extends Controller
 
         $request->session()->flash('success', 'You have edited the user');
 
-        return redirect(route('admin.users.index'));
+        return redirect(("admin/users/{$user->id}"));
     }
 
     /**

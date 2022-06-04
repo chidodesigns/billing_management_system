@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <a class="btn btn-sm btn-warning"
+                    <a class="btn btn-sm btn-success"
                         href="{{ route('admin.client-payments.create', ['id' => $client->id]) }}" role="button">Create
                         Client Payment Record</a>
                     <a class="btn btn-sm btn-primary" href="{{ route('admin.clients.edit', $client->id) }}"

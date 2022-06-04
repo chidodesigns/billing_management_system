@@ -1,5 +1,5 @@
 @extends('templates.main')
 
 @section('content')
-    <h1>Hi From Index!</h1>
+    <h1>Dashboard</h1>
 @endsection

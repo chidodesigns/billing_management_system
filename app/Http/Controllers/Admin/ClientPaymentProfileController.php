@@ -135,7 +135,7 @@ class ClientPaymentProfileController extends Controller
 
         $request->session()->flash('success', 'You have edited the client payment record');
 
-        return redirect(route('admin.client-payments.index'));
+        return redirect(("admin/clients/{$clientPaymentProfile->client_id}"));
     }
 
     /**
