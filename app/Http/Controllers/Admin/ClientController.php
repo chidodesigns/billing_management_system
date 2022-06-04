@@ -58,7 +58,8 @@ class ClientController extends Controller
 
         $request->session()->flash('success', 'You have created a new client');
 
-        return redirect(route('admin.clients.index'));
+        
+        return redirect(("admin/clients/{$client->id}"));
     }
 
     /**
@@ -110,7 +111,7 @@ class ClientController extends Controller
 
         $request->session()->flash('success', 'You have edited the client');
 
-        return redirect(route('admin.clients.index'));
+        return redirect(("admin/clients/{$client->id}"));
     }
 
     /**

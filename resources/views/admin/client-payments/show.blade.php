@@ -5,12 +5,13 @@
         <a href="{{ url()->previous() }}" role="button" class="btn btn-primary">Back</a>
     </div>
     <div class="row mb-2">
+        <h2 class="text-center mb-5">Client Payment Record #{{$client_payment_profile->id}}</h2>
         @php
             $total = 0;
         @endphp
         <div class="col-md-6">
             <div class="card">
-                <h4 class="text-center">Services For Client</h4>
+                <h4 class="text-center">Services On Client Payment Record</h4>
             </div>
             @foreach ($service_payment_records as $record)
                 <div class="card">
@@ -36,7 +37,7 @@
                             @endisset
                             <li class="list-group-item">
                                 <strong>Amount:</strong>
-                                £ {{ $record->amount }}
+                                £{{ $record->amount }}
                                 @php
                                     $total += $record->amount;
                                 @endphp

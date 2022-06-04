@@ -45,7 +45,7 @@
                 @foreach (Helper::getClientPaymentProfiles($client->id) as $clientPaymentRecord)
                 <div class="card mb-3">
                     <ul class="list-group list-group-flush">
-                        <h6 class="my-5 text-center text-decoration-underline">Client Payment Record</h6>
+                        <h6 class="my-5 text-center text-decoration-underline">Client Payment Record #{{$clientPaymentRecord->id}}</h6>
                         <li class="list-group-item"><strong>Recurrence Type:</strong>
                             {{ $clientPaymentRecord->recurrence_type }}
                         </li>
