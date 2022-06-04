@@ -101,7 +101,7 @@ class ServiceController extends Controller
             'service_type_name'
         ]));
 
-        $request->session()->flash('success', 'You have edited the service');
+        $request->session()->flash('success', "You have edited the service: {$service->service_type_name}");
 
         return redirect(route('admin.services.index'));
     }
