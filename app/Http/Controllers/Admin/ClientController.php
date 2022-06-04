@@ -7,6 +7,7 @@ use App\Http\Requests\StoreClientRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class ClientController extends Controller
 {
@@ -57,6 +58,9 @@ class ClientController extends Controller
         $client = Client::create($validatedData);
 
         $request->session()->flash('success', 'You have created a new client');
+
+
+        Log::info('A Client Was Created: #ID'. $client->id);
 
         
         return redirect(("admin/clients/{$client->id}"));
@@ -109,6 +113,9 @@ class ClientController extends Controller
             'token',
         ]));
 
+        
+        Log::info('A Client Was Edited: #ID'. $client->id);
+
         $request->session()->flash('success', 'You have edited the client');
 
         return redirect(("admin/clients/{$client->id}"));
@@ -121,10 +128,14 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id, Request $request)
-    {
+    {   
+        $client =  Client::find($id);
+
         Client::destroy($id);
 
         $request->session()->flash('success', 'You have deleted the user');
+
+        Log::info('A Client Was Deleted: #ID'. $client->id);
 
         return redirect(route('admin.clients.index'));
     }

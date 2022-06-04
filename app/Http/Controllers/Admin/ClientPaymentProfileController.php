@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\ServicePaymentRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class ClientPaymentProfileController extends Controller
 {
@@ -65,6 +66,8 @@ class ClientPaymentProfileController extends Controller
         ]);
 
         $clientPaymentProfile = ClientPaymentProfile::create($validatedData);
+
+        Log::info('A Client Paymnent Record Was Created: #ID'. $clientPaymentProfile->id);
 
         $request->session()->flash('success', 'You have created a new Client Payment Record');
 
@@ -133,6 +136,8 @@ class ClientPaymentProfileController extends Controller
 
         ]));
 
+        Log::info('A Client Paymnent Record Was Edited: #ID'. $clientPaymentProfile->id);
+
         $request->session()->flash('success', 'You have edited the client payment record');
 
         return redirect(("admin/clients/{$clientPaymentProfile->client_id}"));
@@ -146,7 +151,11 @@ class ClientPaymentProfileController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        $clientPaymentProfile = ClientPaymentProfile::find($id);
+
         ClientPaymentProfile::destroy($id);
+
+        Log::info('A Client Paymnent Record Was Deleted: #ID'. $clientPaymentProfile->id);
 
         $request->session()->flash('success', 'You have deleted the client payment profile');
 

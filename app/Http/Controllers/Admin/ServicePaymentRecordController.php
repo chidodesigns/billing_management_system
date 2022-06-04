@@ -7,6 +7,7 @@ use App\Models\ClientPaymentProfile;
 use App\Models\Service;
 use App\Models\ServicePaymentRecord as ModelsServicePaymentRecord;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ServicePaymentRecordController extends Controller
 {
@@ -65,6 +66,7 @@ class ServicePaymentRecordController extends Controller
 
         $request->session()->flash('success', 'You have created a new Service Payment Record');
 
+        Log::info('A Service Payment Record was created: ID#'. $servicePaymentRecord->id);
         
         return redirect(("admin/client-payments/{$servicePaymentRecord->client_payment_profile_id}"));
     }
@@ -121,6 +123,8 @@ class ServicePaymentRecordController extends Controller
 
         $request->session()->flash('success', 'You have edited this service payment record');
 
+        Log::info('A Service Payment Record was Edited: ID#'. $servicePaymentRecord->id);
+
         return redirect(("admin/client-payments/{$servicePaymentRecord->client_payment_profile_id}"));
     }
 
@@ -132,7 +136,11 @@ class ServicePaymentRecordController extends Controller
      */
     public function destroy($id, Request $request)
     {
+        $servicePaymentRecord = ModelsServicePaymentRecord::find($id);
+
         ModelsServicePaymentRecord::destroy($id);
+
+        Log::info('A Service Payment Record was deleted User: ID#'. $servicePaymentRecord->id);
 
         $request->session()->flash('success', 'You have deleted a service payment record');
 

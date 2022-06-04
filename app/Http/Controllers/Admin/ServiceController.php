@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class ServiceController extends Controller
 {
@@ -50,6 +51,8 @@ class ServiceController extends Controller
 
         $service =  Service::create($validatedData);
 
+        Log::info('A Service Was Created: #ID'. $service->id);
+
         $request->session()->flash('success', 'You have created a new client');
 
         return redirect(route('admin.services.index'));
@@ -76,6 +79,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
+
         return view('admin.services.edit', [
             'service' => $service
         ]);
@@ -101,6 +105,8 @@ class ServiceController extends Controller
             'service_type_name'
         ]));
 
+        Log::info('A Service Was Edited: #ID'. $service->id);
+
         $request->session()->flash('success', "You have edited the service: {$service->service_type_name}");
 
         return redirect(route('admin.services.index'));
@@ -114,7 +120,11 @@ class ServiceController extends Controller
      */
     public function destroy($id, Request $request)
     {
+        $service = Service::find($id);
+
         Service::destroy($id);
+
+        Log::info('A Service Was Deleted: #ID'. $service->id);
 
         $request->session()->flash('success', 'You have deleted the service');
 

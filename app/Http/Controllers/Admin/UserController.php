@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
 
 class UserController extends Controller
@@ -38,6 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
+
         return view('admin.users.create', [
             'roles' => Role::all()
         ]);
@@ -65,6 +67,8 @@ class UserController extends Controller
 
         $request->session()->flash('success', 'You have created the user');
 
+        Log::info('A New User Was Created: '. $user->id);
+
         return redirect(route('admin.users.index'));
     }
 
@@ -91,9 +95,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $user = User::find($id);
+
         return view('admin.users.edit', [
             'roles' => Role::all(),
-            'user' => User::find($id)
+            'user' => $user
         ]);   
     }
 
@@ -120,6 +126,8 @@ class UserController extends Controller
 
         $user->roles()->sync($request->roles);
 
+        Log::info('A User Was Edited: #ID'. $user->id);
+
         $request->session()->flash('success', 'You have edited the user');
 
         return redirect(("admin/users/{$user->id}"));
@@ -133,7 +141,11 @@ class UserController extends Controller
      */
     public function destroy($id, Request $request)
     {
+        $user = User::find($id);
+
         User::destroy($id);
+
+        Log::info('A New User Was Deleted: ID#'. $user->id);
 
         $request->session()->flash('success', 'You have deleted the user');
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 
 class SearchController extends Controller
 {
@@ -22,6 +22,8 @@ class SearchController extends Controller
         ]);
 
         $searchedClients = Client::search($data['search_term'])->paginate();
+
+        Log::info('A Client Was Searched For: Search Term:'. $data['search_term']);
 
         return view('admin.clients.search',[
             'search_results' => $searchedClients
