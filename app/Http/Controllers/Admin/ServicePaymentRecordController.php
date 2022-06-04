@@ -65,7 +65,8 @@ class ServicePaymentRecordController extends Controller
 
         $request->session()->flash('success', 'You have created a new Service Payment Record');
 
-        return redirect(route('admin.client-payments.index'));
+        
+        return redirect(("admin/client-payments/{$servicePaymentRecord->client_payment_profile_id}"));
     }
 
     /**
@@ -120,7 +121,7 @@ class ServicePaymentRecordController extends Controller
 
         $request->session()->flash('success', 'You have edited this service payment record');
 
-        return redirect(route('admin.client-payments.index'));
+        return redirect(("admin/client-payments/{$servicePaymentRecord->client_payment_profile_id}"));
     }
 
     /**

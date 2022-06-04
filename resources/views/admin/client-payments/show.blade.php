@@ -9,6 +9,9 @@
             $total = 0;
         @endphp
         <div class="col-md-6">
+            <div class="card">
+                <h4 class="text-center">Services For Client</h4>
+            </div>
             @foreach ($service_payment_records as $record)
                 <div class="card">
                     <div class="card-body">
@@ -72,8 +75,8 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">
-                    <h1>Client:{{ $client_payment_profile->client_name }}</h1>
+                <div>
+                    <h4 class="text-center">Client Profile:{{ $client_payment_profile->client_name }}</h4>
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
