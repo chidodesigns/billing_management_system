@@ -75,6 +75,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.services.index')}}">Services</a>
                     </li>
+                    <li class="nav-item"> 
+                        <a href="{{route('admin.utilities.index')}}" class="nav-link">Utilities</a>
+                    </li>
                 </ul>
                     <div class="d-flex">
                         <x-search/>

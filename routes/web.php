@@ -30,10 +30,7 @@ Route::prefix('user')->middleware(['auth'])->name('user.')->group(function () {
     Route::get('profile', Profile::class)->name('profile');
 });
 
-  //  Export Clients 
-  Route::get('/clients/export/', ExportController::class);
-
-
+ 
 //  Admin Routes
 Route::prefix('admin')->middleware(['auth', 'auth.isAdmin'])->name('admin.')->group(function (){
     //  Billing System Users
@@ -48,6 +45,11 @@ Route::prefix('admin')->middleware(['auth', 'auth.isAdmin'])->name('admin.')->gr
     Route::resource('/service-payments', ServicePaymentRecordController::class);
     //  Billing System Search Route 
     Route::post('/search', SearchController::class)->name('clients.search');
+     // Billing System Export Clients 
+  Route::get('/clients-export', ExportController::class)->name('clients.export');
+  
+  //    Route Views
+  Route::view('/utilities', 'admin.utilities.index')->name('utilities.index');
 
 });
 

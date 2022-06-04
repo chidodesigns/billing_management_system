@@ -12,8 +12,9 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ExportController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request)
     {
+     
         return new ClientsExport();
     }
 }
