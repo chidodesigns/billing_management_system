@@ -1,6 +1,6 @@
 <!-- Modal -->
-@props(['user' => $user])
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="exampleModal{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                This will delete the Client: {{$user->name}} and all associated data.
+                This will delete the User: {{$user->name}} and all associated data.
 
                 This action cannot be undone.
             </div>

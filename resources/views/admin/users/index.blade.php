@@ -27,7 +27,7 @@
                     <td>
                         <a class="btn btn-sm btn-success" href="{{ route('admin.users.show', $user->id) }}" role="button">View User</a>
                         <a class="btn btn-sm btn-primary" href="{{ route('admin.users.edit', $user->id)}}" role="button">Edit</a>
-                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$user->id}}">
                             Delete
                         </button>
                     </td>
