@@ -39,8 +39,5 @@
           </table>
           {{ $users->links()}}
     </div>
-    <!-- Button trigger modal -->
-
-
 @endsection
 

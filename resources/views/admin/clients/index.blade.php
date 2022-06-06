@@ -33,19 +33,13 @@
                             <a class="btn btn-sm btn-success" href="{{ route('admin.clients.show', $client) }}" role="button">View Client</a>
                             <a class="btn btn-sm btn-warning" href="{{ route('admin.client-payments.create', ['id' => $client->id])}}" role="button">Create Client Payment Record</a>
                             <a class="btn btn-sm btn-primary" href="{{ route('admin.clients.edit', $client->id)}}" role="button">Edit Client</a>
-                            <button type="button" class="btn btn-sm btn-danger"
-                            onclick="event.preventDefault(); 
-                            document.getElementById('delete-client-form-{{$client->id}}').submit()">
-                                Delete Client
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$client->id}}">
+                                Delete
                             </button>
-                            <form id="delete-client-form-{{$client->id}}" action="{{ route('admin.clients.destroy', $client->id)}}" method="POST" style="display: none;">
-                                @csrf
-                                @method("DELETE")
-                            </form>
                         </div>
                     </td>
                   </tr>
-                  
+                  <x-clientdeletemodal :client="$client" />
                 @endforeach
            
             </tbody>

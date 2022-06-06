@@ -27,16 +27,10 @@
                     <a class="btn btn-sm btn-primary" href="{{ route('admin.clients.edit', $client->id) }}"
                         role="button">Edit
                         Client</a>
-                    <button type="button" class="btn btn-sm btn-danger"
-                        onclick="event.preventDefault();
-                                                            document.getElementById('delete-client-form-{{ $client->id }}').submit()">
-                        Delete Client
-                    </button>
-                    <form id="delete-client-form-{{ $client->id }}"
-                        action="{{ route('admin.clients.destroy', $client->id) }}" method="POST" style="display: none;">
-                        @csrf
-                        @method('DELETE')
-                    </form>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$client->id}}">
+                            Delete
+                        </button>
+                        <x-clientdeletemodal :client="$client" />
                 </div>
             </div>
         </div>
