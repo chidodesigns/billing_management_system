@@ -49,7 +49,7 @@ class ClientController extends Controller
     {
         $validatedData = $request->validate([
             'company' => 'required|max:255',
-            'free_agent_id' => 'required',
+            // 'free_agent_id' => 'required',
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
             'email' => 'required|max:255|unique:clients',

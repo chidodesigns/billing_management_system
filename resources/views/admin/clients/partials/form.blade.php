@@ -10,7 +10,7 @@
     @enderror
 </div>
 <div class="mb-3">
-    <label for="free_agent_id" class="form-label">Free Agent Id*</label>
+    <label for="free_agent_id" class="form-label">Free Agent Id</label>
     <input type="text" class="form-control @error('free_agent_id') is-invalid @enderror" id="free_agent_id" aria-describedby="free_agent_id"
         name="free_agent_id" value="{{ old('free_agent_id') }}@isset($client) {{ $client->free_agent_id }} @endisset">
     @error('free_agent_id')
