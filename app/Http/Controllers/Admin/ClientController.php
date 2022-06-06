@@ -58,6 +58,13 @@ class ClientController extends Controller
 
         $client = Client::create($validatedData);
 
+
+        /**
+         *  Laravel Scout will automatically persist the
+         *  changes to your Algolia search index.
+         */
+        $client->update();
+
         $request->session()->flash('success', 'You have created a new client');
 
 
