@@ -27,21 +27,20 @@
                     <td>
                         <a class="btn btn-sm btn-success" href="{{ route('admin.users.show', $user->id) }}" role="button">View User</a>
                         <a class="btn btn-sm btn-primary" href="{{ route('admin.users.edit', $user->id)}}" role="button">Edit</a>
-                        <button type="button" class="btn btn-sm btn-danger"
-                        onclick="event.preventDefault(); 
-                        document.getElementById('delete-user-form-{{$user->id}}').submit()">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Delete
                         </button>
-                        <form id="delete-user-form-{{$user->id}}" action="{{ route('admin.users.destroy', $user->id)}}" method="POST" style="display: none;">
-                            @csrf
-                            @method("DELETE")
-                        </form>
                     </td>
                   </tr>
+                  <x-userdeletemodal :user="$user" />
                 @endforeach
            
             </tbody>
           </table>
           {{ $users->links()}}
     </div>
+    <!-- Button trigger modal -->
+
+
 @endsection
+
