@@ -56,17 +56,10 @@
                             role="button">Edit
                             Service Payment Record
                         </a>
-                        <button type="button" class="btn btn-sm btn-danger"
-                            onclick="event.preventDefault();
-                                        document.getElementById('delete-service-payments-form-{{ $record->id }}').submit()">
-                            Delete Service Payment Record
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$record->id}}">
+                            Delete
                         </button>
-                        <form id="delete-service-payments-form-{{ $record->id }}"
-                            action="{{ route('admin.service-payments.destroy', $record->id) }}"
-                            method="POST" style="display: none;">
-                            @csrf
-                            @method('DELETE')
-                        </form>
+                        <x-servicepaymentdeletemodal :record="$record" />
                     </div>
                 </div>
             @endforeach
@@ -108,17 +101,10 @@
                         href="{{ route('admin.client-payments.edit', $client_payment_profile->id) }}" role="button">Edit
                         Client Payment Record
                     </a>
-                    <button type="button" class="btn btn-sm btn-danger"
-                        onclick="event.preventDefault();
-                                        document.getElementById('delete-client-payments-form-{{ $client_payment_profile->id }}').submit()">
-                        Delete Client Payment Record
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$client_payment_profile->id}}">
+                        Delete
                     </button>
-                    <form id="delete-client-payments-form-{{ $client_payment_profile->id }}"
-                        action="{{ route('admin.client-payments.destroy', $client_payment_profile->id) }}" method="POST"
-                        style="display: none;">
-                        @csrf
-                        @method('DELETE')
-                    </form>
+                    <x-clientpaymentsdeletemodal :clientpaymentprofile="$client_payment_profile" />
                 </div>
 
             </div>

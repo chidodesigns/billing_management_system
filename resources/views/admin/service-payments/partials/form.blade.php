@@ -56,6 +56,7 @@
     @enderror
 </div>
 <div class="mb-3">
+    <label for="amount" class="form-label">Amount £*</label>
     <input type="text" class="form-control @error('amount') is-invalid @enderror" id="amount"
         aria-describedby="Registration Date" name="amount" value="{{ old('amount') }}@isset($service_payment_record) {{ $service_payment_record->amount }} @endisset">
     @error('amount')
