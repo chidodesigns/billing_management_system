@@ -35,17 +35,12 @@
                         </a>
                         <a class="btn btn-sm btn-success" href="{{ route('admin.client-payments.show', $clientPaymentProfile)}}" role="button">View</a>
                         <a class="btn btn-sm btn-primary" href="{{ route('admin.client-payments.edit', $clientPaymentProfile->id)}}" role="button">Edit</a>
-                        <button type="button" class="btn btn-sm btn-danger"
-                        onclick="event.preventDefault(); 
-                        document.getElementById('delete-client-payment-form-{{$clientPaymentProfile->id}}').submit()">
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$clientPaymentProfile->id}}">
                             Delete
                         </button>
-                        <form id="delete-client-payment-form-{{$clientPaymentProfile->id}}" action="{{ route('admin.client-payments.destroy', $clientPaymentProfile->id)}}" method="POST" style="display: none;">
-                            @csrf
-                            @method("DELETE")
-                        </form>
                     </td>
                   </tr>
+                  <x-clientpaymentsdeletemodal :clientpaymentprofile="$clientPaymentProfile" />
                 @endforeach
            
             </tbody>
