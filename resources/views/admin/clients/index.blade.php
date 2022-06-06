@@ -12,19 +12,21 @@
         <table class="table align-middle">
             <thead>
               <tr>
-                <th scope="col">Free Agent #Id</th>
-                <th scope="col">Company</th>
+                <th scope="col">Client</th>
+                <th scope="col">Contact</th>
                 <th scope="col">Email</th>
-                <th scope="col">Client Payment Records</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Free Agent #Id</th>
+                <th scope="col" class="text-center">No. Recurring Profiles</th>
+                <th scope="col" class="text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
                 @foreach ($clients as $client)
                 <tr>
-                    <td>{{$client->free_agent_id}}</td>
                     <td><a href="{{ route('admin.clients.show', $client) }}">{{$client->company}}</a></td>
+                    <td>{{$client->firstname}} {{$client->lastname}}</td>
                     <td>{{$client->email}}</td>
+                    <td>{{$client->free_agent_id}}</td>
                     <td class="text-center">{{$client->clientPaymentProfile->count()}}</td>
                     <td>
                         <div class="d-flex flex-column">
