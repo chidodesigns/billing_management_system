@@ -70,7 +70,7 @@
                         <a class="nav-link" href="{{route('admin.clients.index')}}">Clients</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.client-payments.index')}}">Client Payment Records</a>
+                        <a class="nav-link" href="{{route('admin.client-payments.index')}}">Recurring Profiles</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.services.index')}}">Services</a>

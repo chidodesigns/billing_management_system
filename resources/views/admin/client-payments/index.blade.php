@@ -4,7 +4,7 @@
     
     <div class="row">
         <div class="col-12 d-flex">
-            <h1 class="me-auto align-self-center">Client Payment Records</h1>
+            <h1 class="me-auto align-self-center">Recurring Profiles</h1>
         </div>
     </div>
 
@@ -16,8 +16,8 @@
                 <th scope="col">Recurrence Type</th>
                 <th scope="col">Recurrance Date (YYYY/MM/DD)</th>
                 <th scope="col">Invoiced</th>
-                <th scope="col">Direct Debit</th>
-                <th scope="col">Payment Terms (Days)</th>
+                <th scope="col" class="text-center">Direct Debit</th>
+                <th scope="col" class="text-center">Payment Terms (Days)</th>
                 <th scope="col" class="text-center">Actions</th>
               </tr>
             </thead>
