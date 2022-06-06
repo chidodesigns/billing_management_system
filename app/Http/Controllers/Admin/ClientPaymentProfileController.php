@@ -54,14 +54,14 @@ class ClientPaymentProfileController extends Controller
     public function store(Request $request)
     {
 
-        $validatedData = $request->only([
-            'client_name',
-            'recurrence_type',
-            'recurrence_date',
-            'invoiced',
-            'direct_debit',
-            'payment_terms',
-            'client_id',
+        $validatedData = $request->validate([
+            'client_name' => 'required|max:255',
+            'recurrence_type' => 'required',
+            'recurrence_date' => 'required', 
+            'invoiced' => 'required',
+            'direct_debit' => 'required',
+            'payment_terms' => 'required',
+            'client_id' => 'required',
 
         ]);
 
