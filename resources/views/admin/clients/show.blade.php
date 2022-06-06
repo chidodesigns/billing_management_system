@@ -21,16 +21,15 @@
                 </div>
 
                 <div class="card-footer">
-                    <a class="btn btn-sm btn-success"
-                        href="{{ route('admin.client-payments.create', ['id' => $client->id]) }}" role="button">Create
-                        Client Payment Record</a>
+
                     <a class="btn btn-sm btn-primary" href="{{ route('admin.clients.edit', $client->id) }}"
                         role="button">Edit
                         Client</a>
-                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$client->id}}">
-                            Delete
-                        </button>
-                        <x-clientdeletemodal :client="$client" />
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{ $client->id }}">
+                        Delete Client
+                    </button>
+                    <x-clientdeletemodal :client="$client" />
                 </div>
             </div>
         </div>
@@ -70,6 +69,11 @@
 
                     </tbody>
                 </table>
+                <div>
+                    <a class="btn btn-sm btn-success"
+                        href="{{ route('admin.client-payments.create', ['id' => $client->id]) }}" role="button">
+                        Add Profile</a>
+                </div>
             </div>
 
             {{-- <div class="card">

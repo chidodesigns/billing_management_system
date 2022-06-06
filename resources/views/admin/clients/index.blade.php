@@ -5,7 +5,7 @@
         <div class="col-12 d-flex">
             <h1 class="me-auto align-self-center">Clients</h1>
             <a class="btn btn-sm btn-success align-self-center" href="{{ route('admin.clients.create') }}"
-                role="button">Create New Client</a>
+                role="button">Add Client</a>
         </div>
     </div>
 

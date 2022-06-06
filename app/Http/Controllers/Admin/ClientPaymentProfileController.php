@@ -71,7 +71,9 @@ class ClientPaymentProfileController extends Controller
 
         $request->session()->flash('success', 'You have created a new Client Payment Record');
 
-        return redirect(route('admin.client-payments.index'));
+        // return redirect(route('admin.client-payments.index'));
+
+        return redirect(("admin/client-payments/{$clientPaymentProfile->id}"));
     }
 
     /**

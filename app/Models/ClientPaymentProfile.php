@@ -20,7 +20,7 @@ class ClientPaymentProfile extends Model
 
     public function clientPaymentProfileToServicePaymentRecord()
     {
-        return $this->belongsToMany(ServicePaymentRecord::class);
+        return $this->hasMany(ServicePaymentRecord::class);
     }
 
 

@@ -9,27 +9,37 @@
     </div>
 
     <div class="card">
-        <table class="table">
+        <table class="table align-middle">
             <thead>
               <tr>
-                <th scope="col">Client Name</th>
-                <th scope="col">Recurrence Type</th>
-                <th scope="col">Recurrance Date (YYYY/MM/DD)</th>
-                <th scope="col">Invoiced</th>
-                <th scope="col" class="text-center">Direct Debit</th>
-                <th scope="col" class="text-center">Payment Terms (Days)</th>
+                <th scope="col">Profile ID</th>
+                <th scope="col">Client</th>
+                <th scope="col">No.Services</th>
+                <th scope="col">Total Amount</th>
+                <th scope="col">Recurrence</th>
                 <th scope="col" class="text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
                 @foreach ($client_payment_profiles as $clientPaymentProfile)
                 <tr>
+                    <td>{{$clientPaymentProfile->id}}</td>
                     <td><a href="{{ route('admin.clients.show', $clientPaymentProfile->client_id) }}">{{$clientPaymentProfile->client_name}}</a></td>
-                    <td>{{$clientPaymentProfile->recurrence_type}}</td>
-                    <td>{{$clientPaymentProfile->recurrence_date}}</td>
-                    <td>{{$clientPaymentProfile->invoiced}}</td>
-                    <td class="text-center">{{$clientPaymentProfile->direct_debit}}</td>
-                    <td class="text-center">{{$clientPaymentProfile->payment_terms}}</td>
+                    <td>{{$clientPaymentProfile->clientPaymentProfileToServicePaymentRecord->count()}}</td>
+                    <td>
+                        @php
+                            $totalCost = 0;
+                        @endphp
+                        @foreach (Helper::getClientPaymentProfiles($clientPaymentProfile->client_id) as $clientPaymentRecord)
+                            @if (Helper::getServicePaymentRecord($clientPaymentRecord->id)->count() > 0)
+                                @foreach (Helper::getServicePaymentRecord($clientPaymentRecord->id) as $servicePaymentRecord)
+                                    @php $totalCost += $servicePaymentRecord->amount @endphp
+                                @endforeach
+                                £{{ $totalCost }}
+                            @endif
+                        @endforeach
+                 </td>
+                 <td>{{$clientPaymentProfile->recurrence_type}}</td>
                     <td class="d-flex flex-column">
                         <a class="btn btn-sm btn-warning" href="{{ route('admin.service-payments.create', ['id' => $clientPaymentProfile->id]) }}" role="button">Add Service Payment Record
                         </a>
