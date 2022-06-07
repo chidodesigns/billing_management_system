@@ -39,9 +39,9 @@
                                     @foreach (Helper::getServicePaymentRecord($clientPaymentRecord->id) as $servicePaymentRecord)
                                         @php $totalCost += $servicePaymentRecord->amount @endphp
                                     @endforeach
-                                    £{{ $totalCost }}
                                 @endif
                             @endforeach
+                            £{{ $totalCost }}
                      </td>
                 <td>
                     <div class="d-flex flex-column">
