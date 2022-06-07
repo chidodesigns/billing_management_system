@@ -9,7 +9,7 @@
 </div>
 
 <div class="card">
-    <table class="table">
+    <table class="table align-middle">
         <thead>
           <tr>
             <th scope="col">#Id</th>
