@@ -24,17 +24,12 @@
                 <td>{{$service->service_type_name}}</td>
                 <td>
                     <a class="btn btn-sm btn-primary" href="{{ route('admin.services.edit', $service->id)}}" role="button">Edit</a>
-                    <button type="button" class="btn btn-sm btn-danger"
-                    onclick="event.preventDefault(); 
-                    document.getElementById('delete-service-form-{{$service->id}}').submit()">
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$service->id}}">
                         Delete
                     </button>
-                    <form id="delete-service-form-{{$service->id}}" action="{{ route('admin.services.destroy', $service->id)}}" method="POST" style="display: none;">
-                        @csrf
-                        @method("DELETE")
-                    </form>
                 </td>
               </tr>
+              <x-servicesdeletemodal :service="$service"/>
             @endforeach
        
         </tbody>
