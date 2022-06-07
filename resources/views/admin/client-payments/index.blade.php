@@ -30,14 +30,12 @@
                         @php
                             $totalCost = 0;
                         @endphp
-                        @foreach (Helper::getClientPaymentProfiles($clientPaymentProfile->client_id) as $clientPaymentRecord)
-                            @if (Helper::getServicePaymentRecord($clientPaymentRecord->id)->count() > 0)
-                                @foreach (Helper::getServicePaymentRecord($clientPaymentRecord->id) as $servicePaymentRecord)
+                            @if (Helper::getServicePaymentRecord($clientPaymentProfile->id)->count() > 0)
+                                @foreach (Helper::getServicePaymentRecord($clientPaymentProfile->id) as $servicePaymentRecord)
                                     @php $totalCost += $servicePaymentRecord->amount @endphp
                                 @endforeach
                                 £{{ $totalCost }}
                             @endif
-                        @endforeach
                  </td>
                  <td>{{$clientPaymentProfile->recurrence_type}}</td>
                     <td class="d-flex flex-column">

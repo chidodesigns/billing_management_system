@@ -45,11 +45,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $numberOfServices = 0;
-                            $totalCost = 0;
-                        @endphp
                         @foreach (Helper::getClientPaymentProfiles($client->id) as $clientPaymentRecord)
+                            @php
+                                $numberOfServices = 0;
+                                $totalCost = 0;
+                            @endphp
                             <tr>
                                 <td><a
                                         href="{{ route('admin.client-payments.show', $clientPaymentRecord->id) }}">#{{ $clientPaymentRecord->id }}</a>
@@ -63,7 +63,6 @@
                                     <td>{{ $numberOfServices }}</td>
                                     <td>£{{ $totalCost }}</td>
                                 @endif
-
                             </tr>
                         @endforeach
 
